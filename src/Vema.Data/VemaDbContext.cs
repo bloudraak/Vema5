@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 
 // The MIT License (MIT)
 // 
@@ -24,24 +24,22 @@
 
 #endregion
 
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 
-namespace Vema.Portal
+namespace Vema.Data
 {
-    public class Program
+    /// <summary>
+    ///     Represents the database context
+    /// </summary>
+    public class VemaDbContext : DbContext
     {
-        public static void Main(string[] args)
+        public VemaDbContext(DbContextOptions<VemaDbContext> options) : base(options)
         {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .UseApplicationInsights()
-                .Build();
-
-            host.Run();
         }
+
+        /// <summary>
+        ///     Gets or sets the identity stores
+        /// </summary>
+        public DbSet<IdentityStore> IdentityStores { get; set; }
     }
 }

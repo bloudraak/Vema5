@@ -24,24 +24,27 @@
 
 #endregion
 
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
-
-namespace Vema.Portal
+namespace Vema.Data
 {
-    public class Program
+    /// <summary>
+    ///     Represents an identity store
+    /// </summary>
+    /// <remarks>
+    ///     Identity stores contains identities that are used to sign into other systems. An example would be an Azure Active
+    ///     Directory. If a user has credentials in that directory, the user can then login to the Azure Portal.
+    ///     Another example may include an LDAP server. Users can access a computer using the credentials stored in that
+    ///     directory.
+    /// </remarks>
+    public class IdentityStore
     {
-        public static void Main(string[] args)
-        {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .UseApplicationInsights()
-                .Build();
+        /// <summary>
+        ///     Gets or sets the internal id of the identity store
+        /// </summary>
+        public int Id { get; set; }
 
-            host.Run();
-        }
+        /// <summary>
+        ///     Gets or sets the display name of the identity store
+        /// </summary>
+        public string DisplayName { get; set; }
     }
 }
