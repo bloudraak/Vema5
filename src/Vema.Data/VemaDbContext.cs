@@ -41,5 +41,12 @@ namespace Vema.Data
         ///     Gets or sets the identity stores
         /// </summary>
         public DbSet<IdentityStore> IdentityStores { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<IdentityStore>()
+                .ToTable("identity_stores");
+        }
     }
 }
